@@ -1,4 +1,0 @@
-begin
-  foo()
-else
-end

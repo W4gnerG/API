@@ -1,7 +1,0 @@
-(Program 
-  (Statement 
-    (Arg 
-      (Primary 
-        (StringArray 
-          (BareString) 
-          (BareString))))))

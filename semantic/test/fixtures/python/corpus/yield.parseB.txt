@@ -1,7 +1,0 @@
-(Module 
-  (SimpleStatement 
-    (ExpressionStatement 
-      (Yield))) 
-  (SimpleStatement 
-    (ExpressionStatement 
-      (Yield))))

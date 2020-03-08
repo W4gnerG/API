@@ -1,9 +1,0 @@
-(Program 
-  (Statement 
-    (EndBlock 
-      (Statement 
-        (Arg 
-          (Primary 
-            (Lhs 
-              (Variable 
-                (Identifier "foo")))))))))

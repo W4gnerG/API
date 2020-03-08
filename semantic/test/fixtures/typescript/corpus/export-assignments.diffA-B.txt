@@ -1,5 +1,0 @@
-(Statements
-{+(Return
-  {+(Identifier)+})+}
-{-(DefaultExport
-  {-(Identifier)-})-})

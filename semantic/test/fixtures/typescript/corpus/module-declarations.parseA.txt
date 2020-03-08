@@ -1,6 +1,0 @@
-(Program 
-  (Statement 
-    (Declaration 
-      (Module 
-        (StatementBlock) 
-        (Identifier "Promise")))))

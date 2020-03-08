@@ -1,8 +1,0 @@
-(Statements
-  (Class
-    (AccessibilityModifier)
-    (AccessibilityModifier)
-    (Identifier)
-    (MemberAccess
-      (Identifier))
-    (Statements)))

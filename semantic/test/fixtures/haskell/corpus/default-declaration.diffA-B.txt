@@ -1,9 +1,0 @@
-(Module
-  (ModuleIdentifier)
-  (Statements
-    (DefaultDeclaration
-    {+(TypeConstructorIdentifier)+}
-    {+(TypeConstructorIdentifier)+})
-  {-(DefaultDeclaration
-    {-(TypeConstructorIdentifier)-}
-    {-(TypeConstructorIdentifier)-})-}))

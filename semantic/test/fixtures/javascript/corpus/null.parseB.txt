@@ -1,5 +1,0 @@
-(Program 
-  (Statement 
-    (ReturnStatement 
-      (Expression 
-        (Null "null")))))

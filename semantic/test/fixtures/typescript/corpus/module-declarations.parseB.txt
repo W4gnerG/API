@@ -1,8 +1,0 @@
-(Program 
-  (Statement 
-    (Declaration 
-      (AmbientDeclaration 
-        (Declaration 
-          (InternalModule 
-            (StatementBlock) 
-            (Identifier "Promise")))))))

@@ -1,9 +1,0 @@
-(Statements
-  (While
-  { (Send
-    {-(Identifier)-})
-  ->(Not
-    {+(Send
-      {+(Identifier)+})+}) }
-    (Break
-      (Empty))))

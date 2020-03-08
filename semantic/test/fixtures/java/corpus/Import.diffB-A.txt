@@ -1,8 +1,0 @@
-(Statements
-  (Import
-  {+(Identifier)+}
-  { (Identifier)
-  ->(Identifier) }
-  { (Identifier)
-  ->(Identifier) }
-  {-(Asterisk)-}))

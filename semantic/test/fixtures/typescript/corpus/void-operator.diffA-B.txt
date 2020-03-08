@@ -1,6 +1,0 @@
-(Statements
-  (Void
-    (Call
-    { (Identifier)
-    ->(Identifier) }
-      (Empty))))

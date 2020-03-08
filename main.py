@@ -1,7 +1,6 @@
 import requests
 import json
 import time
-import semantic
 
 pairs = ["BRLBTC", "BRLETH", "BRLLTC", "BRLBCH", "BRLXRP"]
 

@@ -1,8 +1,0 @@
-(Statements
-  (AugmentedAssignment
-  { (Or
-    {-(Identifier)-}
-    {-(Integer)-})
-  ->(And
-    {+(Identifier)+}
-    {+(Integer)+}) }))

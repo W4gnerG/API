@@ -1,1 +1,0 @@
-foo rescue false

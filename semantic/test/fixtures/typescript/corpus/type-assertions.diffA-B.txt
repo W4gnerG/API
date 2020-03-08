@@ -1,8 +1,0 @@
-(Statements
-{+(Cast
-  {+(Identifier)+}
-  {+(PredefinedType)+})+}
-{-(TypeAssertion
-  {-(TypeArguments
-    {-(PredefinedType)-})-}
-  {-(Identifier)-})-})

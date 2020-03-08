@@ -1,4 +1,0 @@
-(Statements
-{+(Return
-  {+(Undefined)+})+}
-{-(Undefined)-})

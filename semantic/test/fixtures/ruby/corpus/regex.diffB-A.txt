@@ -1,4 +1,0 @@
-(Statements
-{ (Regex)
-->(Regex) }
-{-(Regex)-})

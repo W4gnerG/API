@@ -1,4 +1,0 @@
-begin
-  foo
-ensure
-end

@@ -1,5 +1,0 @@
-(Module 
-  (SimpleStatement 
-    (ContinueStatement "continue")) 
-  (SimpleStatement 
-    (ContinueStatement "continue")))

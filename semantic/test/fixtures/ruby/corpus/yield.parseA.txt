@@ -1,9 +1,0 @@
-(Program 
-  (Statement 
-    (Yield 
-      (ArgumentList 
-        (Arg 
-          (Primary 
-            (Lhs 
-              (Variable 
-                (Identifier "foo")))))))))

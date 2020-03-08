@@ -1,9 +1,0 @@
-(Statements
-  (Call
-    (MemberAccess
-      (Identifier)
-      (Identifier))
-    (Identifier)
-  { (TextElement)
-  ->(TextElement) }
-    (Empty)))

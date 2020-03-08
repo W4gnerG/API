@@ -1,4 +1,0 @@
-(Module
-{ (ModuleIdentifier)
-->(ModuleIdentifier) }
-  (Statements))

@@ -1,6 +1,0 @@
-(Statements
-  (EnumDeclaration
-    (Identifier)
-    (Identifier)
-    (Identifier)
-    (Identifier)))

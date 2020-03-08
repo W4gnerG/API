@@ -1,4 +1,0 @@
-self
-NIL
-TRUE
-FALSE

@@ -1,6 +1,0 @@
-(Statements
-{+(AmbientDeclaration
-  {+(InternalModule
-    {+(Identifier)+})+})+}
-{-(Module
-  {-(Identifier)-})-})

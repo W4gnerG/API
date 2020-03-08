@@ -1,5 +1,0 @@
-(Statements
-  (Yield
-  { (Send
-    {-(Identifier)-})
-  ->(Empty) }))

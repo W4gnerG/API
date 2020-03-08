@@ -1,9 +1,0 @@
-(Program 
-  (Statement 
-    (Arg 
-      (Primary 
-        (Regex)))) 
-  (Statement 
-    (Arg 
-      (Primary 
-        (Regex)))))

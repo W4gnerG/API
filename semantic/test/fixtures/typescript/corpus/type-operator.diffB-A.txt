@@ -1,6 +1,0 @@
-(Statements
-{+(Typeof
-  {+(Identifier)+})+}
-{-(InstanceOf
-  {-(Identifier)-}
-  {-(Identifier)-})-})

@@ -1,9 +1,0 @@
-(SourceFile 
-  (PackageClause 
-    (PackageIdentifier "main")) 
-  (FunctionDeclaration 
-    (Block 
-      (Statement 
-        (ExpressionSwitchStatement))) 
-    (Identifier "main") 
-    (ParameterList)))

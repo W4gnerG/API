@@ -1,1 +1,0 @@
-delete thing['prop'];

@@ -1,7 +1,0 @@
-(Program 
-  (Statement 
-    (ExportStatement 
-      (Expression 
-        (Class 
-          (ClassBody) 
-          (TypeIdentifier "Foo"))))))

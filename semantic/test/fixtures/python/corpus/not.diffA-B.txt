@@ -1,6 +1,0 @@
-(Statements
-  (Not
-  { (Identifier)
-  ->(Identifier) })
-{+(Not
-  {+(Identifier)+})+})

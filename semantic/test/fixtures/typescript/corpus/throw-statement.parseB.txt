@@ -1,9 +1,0 @@
-(Program 
-  (Statement 
-    (ThrowStatement 
-      (Expression 
-        (NewExpression 
-          (Arguments 
-            (Expression 
-              (String))) 
-          (Identifier "Error"))))))

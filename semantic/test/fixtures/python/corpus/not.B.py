@@ -1,2 +1,0 @@
-not c
-not b

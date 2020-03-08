@@ -1,7 +1,0 @@
-(SourceFile 
-  (PackageClause 
-    (PackageIdentifier "main")) 
-  (FunctionDeclaration 
-    (Block) 
-    (Identifier "main") 
-    (ParameterList)))

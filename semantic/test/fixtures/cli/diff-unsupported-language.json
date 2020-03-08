@@ -1,9 +1,0 @@
-{
-  "blobs": [{
-    "after": {
-      "path": "test.kt",
-      "content": "fun main(args: Array<String>) {\nprintln(\"hi\")\n}\n",
-      "language": "Kotlin"
-    }
-  }]
-}

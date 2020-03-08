@@ -1,9 +1,0 @@
-{
-  "blobs": [{
-    "after": {
-      "path": "method.rb",
-      "content": "def bar(x); end",
-      "language": "Ruby"
-    }
-  }]
-}

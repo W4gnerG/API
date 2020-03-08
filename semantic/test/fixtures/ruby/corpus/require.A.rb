@@ -1,3 +1,0 @@
-require "json"
-
-foo(a)
