@@ -7,12 +7,13 @@ pairs = ["BRLBTC", "BRLETH", "BRLLTC", "BRLBCH", "BRLXRP"]
 
 def readConfig():
     try:
-        f = open("config.txt", "r")
+        f = open("config.json", "r")
         if f.mode == "r":
-            token = f.read()
+            token = json.loads(f.read())
+            token = token['token']
         f.close()
     except:
-        f = open("config.txt", "w+")
+        f = open("config.json", "w+")
         f.close()
         print("Error reading or creating config file")
 
