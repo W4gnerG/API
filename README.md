@@ -1,2 +1,3 @@
 # API
-Integração com API de compra e venda do mercado bitcoin
+
+Integração com <code>API</code> do Mercado Bitcoin
