@@ -1,21 +1,23 @@
 import requests
 import json
 import time
-
-print("Iniciando script...")
-
-try:
-    f = open("config.txt", "r")
-    if f.mode == "r":
-        token = f.read()
-    f.close()
-except:
-    f = open("config.txt", "w+")
-    f.close()
-    print("Error reading or creating config file")
+import semantic
 
 pairs = ["BRLBTC", "BRLETH", "BRLLTC", "BRLBCH", "BRLXRP"]
-lastPrice = [0, 1, 2, 3, 4]
+
+
+def readConfig():
+    try:
+        f = open("config.txt", "r")
+        if f.mode == "r":
+            token = f.read()
+        f.close()
+    except:
+        f = open("config.txt", "w+")
+        f.close()
+        print("Error reading or creating config file")
+
+    return token
 
 
 def ticker(pair):
@@ -29,6 +31,7 @@ def ticker(pair):
 
     response = requests.request("GET", url, headers=headers, data=payload)
     ticker = json.loads(response.text)
+    lastPrice = [0, 1, 2, 3, 4]
 
     if pair == "BRLBTC":
         lastPrice[0] = ticker['data']['last']
@@ -44,35 +47,46 @@ def ticker(pair):
     return lastPrice
 
 
-while True:
+def main():
 
-    # Cotações
-    for value in pairs:
-        ticker(value)
-        print(json.dumps(lastPrice[0], indent=4, sort_keys=False))
+    token = readConfig()
+    while True:
 
-    # Saldo da Carteira
-    url = "https://api.bitcointrade.com.br/v3/wallets/balance"
+        # Cotações
+        for value in pairs:
+            ticker(value)
+            #print(json.dumps(lastPrice[0], indent=4, sort_keys=False))
 
-    payload = {}
-    headers = {
-        'Content-Type': 'application/json',
-        'x-api-key': token
-    }
+        # Saldo da Carteira
+        url = "https://api.bitcointrade.com.br/v3/wallets/balance"
 
-    response = requests.request("GET", url, headers=headers, data=payload)
-    balance = json.loads(response.text)
+        payload = {}
+        headers = {
+            'Content-Type': 'application/json',
+            'x-api-key': token
+        }
 
-    print(json.dumps(balance, indent=4, sort_keys=False))
+        response = requests.request("GET", url, headers=headers, data=payload)
+        balance = json.loads(response.text)
 
-    url = "https://api.bitcointrade.com.br/v2/market?pair=BRLBTC"
+        print(json.dumps(balance, indent=4, sort_keys=False))
 
-    payload = {}
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': token
-    }
+        # Book Orders
+        url = "https://api.bitcointrade.com.br/v3/market?pair=BRLBTC"
 
-    response = requests.request("GET", url, headers=headers, data=payload)
+        payload = {}
+        headers = {
+            'Content-Type': 'application/json',
+            'x-api-key': token
+        }
 
-    time.sleep(1)
+        response = requests.request("GET", url, headers=headers, data=payload)
+        book = json.loads(response.text)
+
+        #print(json.dumps(book, indent=4, sort_keys=False))
+
+        time.sleep(1)
+
+
+if __name__ == "__main__":
+    main()
