@@ -1,3 +1,3 @@
-# API
+# Script para operações de compra e venda no BitcoinTrade
 
-Integração com <code>API</code> do BitcoinTrade
+Python script que integra com a <code>API</code> do BitcoinTrade para fazer operações de compra e venda
