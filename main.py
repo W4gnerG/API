@@ -2,13 +2,17 @@ import requests
 import json
 import time
 
-pairs = ["BRLBTC", "BRLETH", "BRLLTC", "BRLBCH", "BRLXRP"]
+token = ''
+lastPrice = []
+pairs = ['BRLBTC', 'BRLETH', 'BRLLTC', 'BRLBCH', 'BRLXRP']
 
 
 def readConfig():
+
     try:
         f = open("config.json", "r")
         if f.mode == "r":
+            global token
             token = json.loads(f.read())
             token = token['token']
         f.close()
@@ -17,10 +21,8 @@ def readConfig():
         f.close()
         print("Error reading or creating config file")
 
-    return token
 
-
-def ticker(pair):
+def getPrice(pair):
 
     url = "https://api.bitcointrade.com.br/v2/public/"+pair+"/ticker"
 
@@ -30,62 +32,78 @@ def ticker(pair):
     }
 
     response = requests.request("GET", url, headers=headers, data=payload)
-    ticker = json.loads(response.text)
-    lastPrice = [0, 1, 2, 3, 4]
 
-    if pair == "BRLBTC":
-        lastPrice[0] = ticker['data']['last']
-    elif (pair == "BRLETH"):
-        lastPrice[1] = ticker['data']['last']
-    elif (pair == "BRLLTC"):
-        lastPrice[2] = ticker['data']['last']
-    elif (pair == "BRLBCH"):
-        lastPrice[3] = ticker['data']['last']
-    elif (pair == "BRLXRP"):
-        lastPrice[4] = ticker['data']['last']
+    try:
+        return json.loads(response.text)['data']
+    except:
+        return {'sell': 0}  # isso aqui é um problema que ocorre bastante
 
-    return lastPrice
+
+def getBalance():
+    url = "https://api.bitcointrade.com.br/v3/wallets/balance"
+    global token
+    payload = {}
+    headers = {
+        'Content-Type': 'application/json',
+        'x-api-key':  token
+    }
+
+    try:
+        response = requests.request("GET", url, headers=headers, data=payload)
+        return json.loads(response.text)['data']
+    except:
+        return ''
+
+
+def getBookOrders():
+
+    url = "https://api.bitcointrade.com.br/v3/market?pair=BRLBTC"
+
+    payload = {}
+    headers = {
+        'Content-Type': 'application/json',
+        'x-api-key': token
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    return json.loads(response.text)
 
 
 def main():
-
-    token = readConfig()
+    readConfig()
     while True:
 
         # Cotações
+        lastPrice = []
+
         for value in pairs:
-            ticker(value)
-            #print(json.dumps(lastPrice[0], indent=4, sort_keys=False))
+            lastPrice.append(getPrice(value))
 
         # Saldo da Carteira
-        url = "https://api.bitcointrade.com.br/v3/wallets/balance"
+        balance = getBalance()
 
-        payload = {}
-        headers = {
-            'Content-Type': 'application/json',
-            'x-api-key': token
-        }
+        balanceBRL = balance[0]['available_amount']
+        balanceBTC = balance[2]['available_amount']
+        balanceETH = balance[3]['available_amount']
+        balanceLTC = balance[4]['available_amount']
+        balanceBCH = balance[5]['available_amount']
+        balanceXRP = balance[6]['available_amount']
 
-        response = requests.request("GET", url, headers=headers, data=payload)
-        balance = json.loads(response.text)
+        totalBalance = balanceBRL + (
+            balanceBTC * lastPrice[0]['sell']) + (
+                balanceETH * lastPrice[1]['sell']) + (
+                    balanceLTC * lastPrice[2]['sell']) + (
+                        balanceBCH * lastPrice[3]['sell']) + (
+                            balanceXRP * lastPrice[4]['sell'])
 
-        print(json.dumps(balance, indent=4, sort_keys=False))
+        message = '> Total Balance is: R${:.2f}'
+        print(message.format(totalBalance))
 
-        # Book Orders
-        url = "https://api.bitcointrade.com.br/v3/market?pair=BRLBTC"
+        # Livro de orfertas
+        bookOrders = getBookOrders()
 
-        payload = {}
-        headers = {
-            'Content-Type': 'application/json',
-            'x-api-key': token
-        }
-
-        response = requests.request("GET", url, headers=headers, data=payload)
-        book = json.loads(response.text)
-
-        #print(json.dumps(book, indent=4, sort_keys=False))
-
-        time.sleep(1)
+        time.sleep(10)
 
 
 if __name__ == "__main__":
