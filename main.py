@@ -23,20 +23,19 @@ def readConfig():
 
 
 def getPrice(pair):
+    status_code = 0
+    while(status_code != 200):
+        url = "https://api.bitcointrade.com.br/v2/public/"+pair+"/ticker"
 
-    url = "https://api.bitcointrade.com.br/v2/public/"+pair+"/ticker"
+        payload = {}
+        headers = {
+            'Content-Type': 'application/json'
+        }
 
-    payload = {}
-    headers = {
-        'Content-Type': 'application/json'
-    }
+        response = requests.request("GET", url, headers=headers, data=payload)
+        status_code = response.status_code
 
-    response = requests.request("GET", url, headers=headers, data=payload)
-
-    try:
-        return json.loads(response.text)['data']
-    except:
-        return {'sell': 0}  # isso aqui é um problema que ocorre bastante
+    return json.loads(response.text)['data']
 
 
 def getBalance():
@@ -72,38 +71,44 @@ def getBookOrders():
 
 def main():
     readConfig()
-    while True:
+    try:
 
-        # Cotações
-        lastPrice = []
+        while True:
 
-        for value in pairs:
-            lastPrice.append(getPrice(value))
+            lastPrice = []
 
-        # Saldo da Carteira
-        balance = getBalance()
+            for value in pairs:
+                lastPrice.append(getPrice(value))
 
-        balanceBRL = balance[0]['available_amount']
-        balanceBTC = balance[2]['available_amount']
-        balanceETH = balance[3]['available_amount']
-        balanceLTC = balance[4]['available_amount']
-        balanceBCH = balance[5]['available_amount']
-        balanceXRP = balance[6]['available_amount']
+            # Saldo da Carteira
+            balance = getBalance()
 
-        totalBalance = balanceBRL + (
-            balanceBTC * lastPrice[0]['sell']) + (
-                balanceETH * lastPrice[1]['sell']) + (
-                    balanceLTC * lastPrice[2]['sell']) + (
-                        balanceBCH * lastPrice[3]['sell']) + (
-                            balanceXRP * lastPrice[4]['sell'])
+            balanceBRL = balance[0]['available_amount']
+            balanceBTC = balance[2]['available_amount']
+            balanceETH = balance[3]['available_amount']
+            balanceLTC = balance[4]['available_amount']
+            balanceBCH = balance[5]['available_amount']
+            balanceXRP = balance[6]['available_amount']
 
-        message = '> Total Balance is: R${:.2f}'
-        print(message.format(totalBalance))
+            totalBalance = balanceBRL + (
+                balanceBTC * lastPrice[0]['sell']) + (
+                    balanceETH * lastPrice[1]['sell']) + (
+                        balanceLTC * lastPrice[2]['sell']) + (
+                            balanceBCH * lastPrice[3]['sell']) + (
+                                balanceXRP * lastPrice[4]['sell'])
 
-        # Livro de orfertas
-        bookOrders = getBookOrders()
+            message = '> Total Balance is: R${:.2f}'
+            print(message.format(totalBalance))
 
-        time.sleep(10)
+            # Livro de orfertas
+            bookOrders = getBookOrders()
+
+            time.sleep(10)
+    except (KeyboardInterrupt):
+        print(' Encerrando...')
+    except:
+        print('Error')
+        
 
 
 if __name__ == "__main__":
