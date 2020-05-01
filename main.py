@@ -25,7 +25,7 @@ def readConfig():
 def getPrice(pair):
     status_code = 0
     while(status_code != 200):
-        url = "https://api.bitcointrade.com.br/v2/public/"+pair+"/ticker"
+        url = "https://api.bitcointrade.com.br/v3/public/"+pair+"/ticker"
 
         payload = {}
         headers = {
