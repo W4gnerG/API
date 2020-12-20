@@ -1,25 +1,29 @@
 import json
 import requests
-from os import path
+from os import path, stat
 
 token = ""
 
 
 def ReadConfig():
     try:
-        f = open("../config.json", "r")
-        if f.mode == "r":
-            global token
-            token = json.loads(f.read())
-            token = token['token']
-        f.close()
-    except:
-        if path.exists("../config.json") is True:
-            print("Error reading config file")
+        if path.exists("./config.json") is True:
+            f = open("./config.json", "r")
+            if stat("config.json").st_size > 0:
+                global token
+                dados = json.loads(f.read())
+                token = dados['token']
+            else:
+                print("Insert the token inside config file")
+                exit()
+            f.close()
         else:
             f = open("config.json", "w+")
-            f.close()
-            print("Error creating config file")
+            print("Created config file")
+            exit()
+    except:
+        print("There has ben an error reading the file")
+        exit()
 
 
 def GetPrice(pair):

@@ -7,7 +7,7 @@ pairs = ['BRLBTC', 'BRLETH', 'BRLLTC', 'BRLBCH', 'BRLXRP']
 
 
 def main():
-    token = api.ReadConfig()
+    api.ReadConfig()
     try:
         while True:
 
@@ -29,11 +29,11 @@ def main():
             # balanceEOS = balance[6]['available_amount']
 
             totalBalance = balanceBRL + (
-                    balanceBTC * lastPrice[0]['sell']) + (
-                                   balanceETH * lastPrice[1]['sell']) + (
-                                   balanceLTC * lastPrice[2]['sell']) + (
-                                   balanceBCH * lastPrice[3]['sell']) + (
-                                   balanceXRP * lastPrice[4]['sell'])
+                balanceBTC * lastPrice[0]['sell']) + (
+                balanceETH * lastPrice[1]['sell']) + (
+                balanceLTC * lastPrice[2]['sell']) + (
+                balanceBCH * lastPrice[3]['sell']) + (
+                balanceXRP * lastPrice[4]['sell'])
 
             now = datetime.now()
             dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
